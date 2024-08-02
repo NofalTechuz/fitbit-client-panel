@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Container from '../../Layouts/Container';
 import { useParams, NavLink } from 'react-router-dom';
 import axiosInstance from '../../Utils/axiosInstance';
+import Loading from '../../Utils/Loading';
 
 const Exercise = () => {
   const { name, id } = useParams();
@@ -9,12 +10,15 @@ const Exercise = () => {
   const [exercise, setExercise] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchExercise = async () => {
     try {
       const response = await axiosInstance.get(`/exercise/category/${id}`);
       setExercise(response.data);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -37,7 +41,7 @@ const Exercise = () => {
         setTimeout(() => {
           videoElement.pause();
           videoElement.currentTime = 0;
-        }, 200); // Adding a delay of 200ms before pausing
+        }, 200000); // Adding a delay of 200ms before pausing
       };
 
       if (videoElement) {
@@ -63,6 +67,10 @@ const Exercise = () => {
     setModalOpen(false);
     setCurrentVideo(null);
   };
+
+  if (loading) {
+    return <Container><Loading /></Container>;
+  }
 
   return (
     <Container>
@@ -97,6 +105,7 @@ const Exercise = () => {
                   <p className="set-of-exercise">{ex.setOfExercise}</p>
                 </div>
                 <video
+                  key={index}
                   ref={(el) => (videoRefs.current[index] = { current: el })}
                   className="exercise-video"
                   src={ex.file}
@@ -118,7 +127,9 @@ const Exercise = () => {
       {modalOpen && (
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close" onClick={closeModal}>&times;</span>
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
             <video controls autoPlay src={currentVideo} className="modal-video"></video>
           </div>
         </div>

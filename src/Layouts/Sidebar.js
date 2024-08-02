@@ -3,13 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   const isLinkActive = (href) => {
-    console.log(document.location.pathname);
     return window.location.pathname === href;
   };
 
   const navigationLinks = [
     { href: '/dashboard', text: 'Dashboard', icon: 'bx bxs-dashboard' },
-    { href: '/exercisescategory', text: 'Exercises Category', icon: 'bx bx-store-alt' },
+    { href: '/exercisescategory', text: 'Exercises', icon: 'bx bx-store-alt' },
     { href: '/chat', text: 'Chat', icon: 'bx bx-message-square-dots' },
     { href: '/dietplan', text: 'Diet Plan', icon: 'bx bx-group' },
     { href: '/helps', text: 'Helps', icon: 'bx bx-analyse' },

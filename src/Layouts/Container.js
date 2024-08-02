@@ -10,7 +10,6 @@ const Container = ({children}) => {
           <Navbar/>
           <div>
             <main>
-              {/* Render children components */}
               {children}
             </main>
           </div>

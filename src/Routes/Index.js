@@ -5,6 +5,7 @@ import ExerciseCategory from '../pages/Exercise/ExerciseCategory';
 import Chat from '../pages/Chat/Chat';
 import DietPlan from '../pages/DietPlan/DietPlan';
 import Helps from '../pages/Helps/Helps';
+import Settings from '../pages/Settings/Settings';
 
 function Index() {
   return (
@@ -17,7 +18,7 @@ function Index() {
         <Route path='/chat' element={<Chat />} />
         <Route path='/dietplan' element={<DietPlan />} />
         <Route path='/helps' element={<Helps />} />
-        <Route path='/settings' element={<Dashboard />} />
+        <Route path='/settings' element={<Settings />} />
       </Routes>
     </>
   );

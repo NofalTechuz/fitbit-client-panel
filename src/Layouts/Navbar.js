@@ -7,8 +7,8 @@ const Navbar = () => {
     <nav>
     <i className='bx bx-menu'></i>
     <form action="#">
-        <div className="form-input">
-            <input type="search" placeholder="Search..." />
+        <div className="form-input" style={{display:"none"}}>
+            <input type="search"  placeholder="Search..." />
             <button className="search-btn" type="submit"><i className='bx bx-search'></i></button>
         </div>
     </form>
@@ -20,7 +20,7 @@ const Navbar = () => {
     </NavLink>
     <span className="profile">
 
-    <NavLink to="#" >
+    <NavLink to="/settings" >
         <img alt='img' src="/assets/img/logo.png" />
     </NavLink>
     </span>

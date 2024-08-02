@@ -474,6 +474,7 @@ body{
 .content main .bottom-data .orders table tbody tr{
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 10px;
 }
 
 .content main .bottom-data .orders table tbody tr:hover{
@@ -499,6 +500,21 @@ body{
 .content main .bottom-data .orders table tr td .status.pending{
     background: var(--warning);
 }
+
+/* Add alternating row background colors */
+.content main .bottom-data .orders table tbody tr:nth-child(odd) {
+    background: var(--light); /* Light grey background for odd rows */
+}
+
+.content main .bottom-data .orders table tbody tr:nth-child(even) {
+    background: var(--grey); /* White background for even rows */
+}
+
+/* Ensuring the hover color works correctly */
+.content main .bottom-data .orders table tbody tr:hover {
+    background: var(--grey); /* Slightly darker grey for hover */
+}
+
 
 .content main .bottom-data .reminders{
     flex-grow: 1;
@@ -628,7 +644,7 @@ body{
   }
   
   .exercise-card {
-    background-color: #fff;
+    background-color: var(--light);    
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -695,7 +711,7 @@ body{
 
 .modal-content {
     border-radius: 5px;
-    background-color: #fefefe;
+    background-color: var(--light);
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -735,4 +751,228 @@ body{
     .exercise-card {
       width: calc(100% - 50px); /* One card in one row, accounting for the gap */
     }
+  }
+
+
+  .download-btn{
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: var(--primary);
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 10px;
+    font-weight: 500;
+  }
+
+
+  .profile-container {
+    margin: auto;
+    background: var(--light);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .profile-header h2 {
+    margin: 10px 0;
+    font-size: 24px;
+  }
+  
+  .profile-header p {
+    color: #888;
+    font-size: 16px;
+  }
+  
+  .profile-body {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile-info {
+    width: 48%;
+  }
+  
+  .profile-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin: 20px 0;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  .profile-info strong {
+    font-weight: 600;
+  }
+  
+
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh; /* Full height to cover the entire screen */
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+
+
+
+  .chat {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .chat__sidebar {
+    height: 100%;
+    background-color: var(--light-primary);
+    flex: 0.2;
+    border-radius: 15px 0 0 15px;
+    color: #000;
+    padding: 20px;
+    border-right: 1px solid var(--light);
+  }
+  .chat__main {
+    height: 100%;
+    flex: 0.8;
+  }
+  .chat__header {
+    margin: 30px 0 20px 0;
+  }
+  .chat__users > * {
+    margin-bottom: 10px;
+    color: #607eaa;
+    font-size: 14px;
+  }
+  .online__users > * {
+    margin-bottom: 10px;
+    color: rgb(238, 102, 102);
+    font-style: italic;
+  }
+  .chat__mainHeader {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 0 15px 0 0;
+    background-color: var(--light-primary);
+    color: #000;
+  }
+  .leaveChat__btn {
+    padding: 10px;
+    width: 150px;
+    border: none;
+    outline: none;
+    background-color: #d1512d;
+    cursor: pointer;
+    color: var(--light);
+  }
+  .message__container {
+    width: 100%;
+    height: 80vh;
+    background-color: var(--light);
+    padding: 20px;
+    overflow-y: scroll;
+  }
+  
+  .message__container > * {
+    margin-bottom: 10px;
+  }
+  .chat__footer {
+    padding: 10px;
+    background-color: var(--light-primary);
+    height: 10vh;
+    border-radius: 0 0 15px 0;
+  }
+  .form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .message {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 15px;
+  }
+  .sendBtn {
+    width: 150px;
+    background-color: green;
+    padding: 10px;
+    border: none;
+    outline: none;
+    color: var(--light);
+    cursor: pointer;
+  }
+  .sendBtn:hover {
+    background-color: rgb(129, 201, 129);
+  }
+  .message__recipient {
+    background-color: #f5ccc2;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #000;
+  }
+  .message__sender {
+    background-color: rgb(194, 243, 194);
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: auto;
+    font-size: 15px;
+    color: #000;
+  }
+  .message__chats > p {
+    font-size: 13px;
+  }
+  .sender__name {
+    text-align: right;
+  }
+  .message__status {
+    position: fixed;
+    bottom: 50px;
+    font-size: 13px;
+    font-style: italic;
   }
