@@ -7,6 +7,8 @@ import Loading from '../../Utils/Loading';
 const Helps = () => {
   const [helps, setHelps] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({ type: '', file: '' });
 
   const fetchHelps = async () => {
     try {
@@ -24,21 +26,57 @@ const Helps = () => {
   }, []);
 
   const checkFileType = (fileType) => {
-    if (fileType == 1) {
-      return 'pdf';
-    } else if (fileType == 2) {
-      return 'video';
-    } else if (fileType == 3) {
-      return 'image';
-    } else if (fileType == 4) {
-      return 'audio';
-    } else {
-      return 'file';
+    switch (fileType) {
+      case 1: return 'pdf';
+      case 2: return 'video';
+      case 3: return 'image';
+      case 4: return 'audio';
+      default: return 'file';
+    }
+  };
+
+  const handleDownloadClick = (fileType, file) => {
+    setModalContent({ type: checkFileType(fileType), file });
+    setModalOpen(true);
+  };
+
+  const renderModalContent = () => {
+    const { type, file } = modalContent;
+
+    switch (type) {
+      case 'video':
+        return <video src={file} controls className="modal-video" />;
+      case 'pdf':
+        return (
+          <div className="pdf-container">
+          <iframe
+            src={modalContent.file}
+            title="PDF"
+            // className="modal-video"
+            width="100%"
+            height="600px"
+          />
+          <a href={modalContent.file} target="_blank" rel="noopener noreferrer">
+            <button className='download-btn'>Download</button>
+          </a>
+        </div>
+
+        )
+      case 'image':
+        return <img src={file} alt="Help" className="modal-video" />;
+      case 'audio':
+        return <audio src={file} controls className="modal-video" />;
+      default:
+        return <a href={file} target="_blank" rel="noopener noreferrer" className="modal-video">Download File</a>;
     }
   };
 
   if (loading) {
-    return <Container><Loading /></Container>;
+    return (
+      <Container>
+        <Loading />
+      </Container>
+    );
   }
 
   return (
@@ -82,11 +120,14 @@ const Helps = () => {
                     <td>
                       <span className="status completed">{checkFileType(item.fileType)}</span>
                     </td>
-                    <td style={{width:"150px"}}>
-                      <a className="download-btn" href={item.file} target="_blank" >
+                    <td style={{ width: '150px' }}>
+                      <button
+                        className="download-btn"
+                        onClick={() => handleDownloadClick(item.fileType, item.file)}
+                      >
                         <i className="bx bx-cloud-download"></i>
                         <span>Download</span>
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -99,6 +140,17 @@ const Helps = () => {
           </table>
         </div>
       </div>
+
+      {modalOpen && (
+        <div className="modal" onClick={() => setModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className=" close" onClick={() => setModalOpen(false)}>
+              &times;
+            </span>
+            {renderModalContent()}
+          </div>
+        </div>
+      )}
     </Container>
   );
 };

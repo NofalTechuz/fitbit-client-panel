@@ -16,24 +16,8 @@ const Chat = () => {
 
   return (
     <Container>
-      <div className="header">
-        <div className="left">
-          <h1>Chat</h1>
-          <ul className="breadcrumb">
-            <NavLink to="/dashboard">
-              <li>Dashboard</li>
-            </NavLink>
-            /
-            <li>
-              <NavLink to="#" className="active">
-                Chat
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="bottom-data" style={{ marginTop: '50px', marginBottom: '300px' }}>
+ 
+      <div className="bottom-data">
         <div className="orders">
           <div className="chat">
             <div className="chat__sidebar">
@@ -53,6 +37,30 @@ const Chat = () => {
                 <button className="leaveChat__btn">LEAVE CHAT</button>
               </header>
               <div className="message__container">
+                <div className="message__chats">
+                  <p className="sender__name">You</p>
+                  <div className="message__sender">
+                    <p>Message from You</p>
+                  </div>
+                </div>
+                <div className="message__chats">
+                  <p>Username</p>
+                  <div className="message__recipient">
+                    <p>Message from Username</p>
+                  </div>
+                </div>
+                <div className="message__chats">
+                  <p className="sender__name">You</p>
+                  <div className="message__sender">
+                    <p>Message from You</p>
+                  </div>
+                </div>
+                <div className="message__chats">
+                  <p>Username</p>
+                  <div className="message__recipient">
+                    <p>Message from Username</p>
+                  </div>
+                </div>
                 <div className="message__chats">
                   <p className="sender__name">You</p>
                   <div className="message__sender">
