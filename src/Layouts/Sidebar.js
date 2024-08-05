@@ -1,7 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const isLinkActive = (href) => {
     return window.location.pathname === href;
   };
@@ -14,6 +16,12 @@ const Sidebar = () => {
     { href: '/helps', text: 'Helps', icon: 'bx bx-donate-heart' },
     { href: '/settings', text: 'Settings', icon: 'bx bx-cog' },
   ];
+
+
+  const logout = () => {
+    Cookies.remove("token");
+    navigate("/signin");
+  };
 
   return (
     <div className="sidebar">
@@ -36,7 +44,7 @@ const Sidebar = () => {
         ))}
       </ul>
       <ul className="side-menu">
-        <li>
+        <li onClick={logout}>
           <NavLink to="#" className="logout">
             <i className="bx bx-log-out-circle"></i>
             Logout
