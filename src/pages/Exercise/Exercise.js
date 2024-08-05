@@ -12,20 +12,24 @@ const Exercise = () => {
   const [currentVideo, setCurrentVideo] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchExercise = async () => {
-    try {
-      const response = await axiosInstance.get(`/exercise/category/${id}`);
-      setExercise(response.data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
+    const fetchExercise = async () => {
+      try {
+        const response = await axiosInstance.get(`/exercise/category/${id}`);
+        setExercise(response.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    };
+
     fetchExercise();
-  }, []);
+  }, [id]);
+
+
+
 
   const videoRefs = useRef([]);
 
@@ -67,6 +71,8 @@ const Exercise = () => {
     setModalOpen(false);
     setCurrentVideo(null);
   };
+
+
 
   if (loading) {
     return <Container><Loading /></Container>;
