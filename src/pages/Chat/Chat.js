@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Container from '../../Layouts/Container';
-import { NavLink } from 'react-router-dom';
-import Loading from '../../Utils/Loading';
 
 const Chat = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  if (loading) {
-    return (
-      <Container>
-        <Loading />
-      </Container>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <Container>
+  //       <Loading />
+  //     </Container>
+  //   );
+  // }
 
   return (
     <Container>

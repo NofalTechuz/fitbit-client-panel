@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Sidebar from '../Layouts/Sidebar';
-import Navbar from '../Layouts/Navbar';
 import Container from '../Layouts/Container';
 import axiosInstance from '../Utils/axiosInstance';
+import Loading from '../Utils/Loading';
 
 const Dashboard = () => {
   const [exercises, setExercises] = useState([]);
@@ -52,6 +51,15 @@ const Dashboard = () => {
     fetchDietPlans();
     fetchHelps();
   }, []);
+
+
+  if (loading) {
+    return (
+      <Container>
+        <Loading />
+      </Container>
+    );
+  }
   return (
     <>
       <Container>

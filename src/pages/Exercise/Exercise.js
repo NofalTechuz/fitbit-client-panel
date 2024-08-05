@@ -5,7 +5,7 @@ import axiosInstance from '../../Utils/axiosInstance';
 import Loading from '../../Utils/Loading';
 
 const Exercise = () => {
-  const { name, id } = useParams();
+  const { id } = useParams();
 
   const [exercise, setExercise] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,7 +25,7 @@ const Exercise = () => {
 
   useEffect(() => {
     fetchExercise();
-  }, [id]);
+  }, []);
 
   const videoRefs = useRef([]);
 
