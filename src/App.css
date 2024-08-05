@@ -5,6 +5,7 @@
     --primary: #1976D2;
     --light-primary: #CFE8FF;
     --grey: #eee;
+    --light-dark-grey: #e5e2e2;
     --dark-grey: #AAAAAA;
     --dark: #363949;
     --danger: #D32F2F;
@@ -503,16 +504,16 @@ body{
 
 /* Add alternating row background colors */
 .content main .bottom-data .orders table tbody tr:nth-child(odd) {
-    background: var(--light); /* Light grey background for odd rows */
+  background: var(--grey); /* White background for even rows */
 }
 
 .content main .bottom-data .orders table tbody tr:nth-child(even) {
-    background: var(--grey); /* White background for even rows */
+  background: var(--light); /* Light grey background for odd rows */
 }
 
 /* Ensuring the hover color works correctly */
 .content main .bottom-data .orders table tbody tr:hover {
-    background: var(--grey); /* Slightly darker grey for hover */
+    background: var(--light-dark-grey); /* Slightly darker grey for hover */
 }
 
 
@@ -977,4 +978,64 @@ body{
     font-style: italic;
   }
 
+  
+
+
+
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .signin-container {
+    background-color: var(--light);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 40%;
+  }
+  
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signin-form h2 {
+    margin-bottom: 20px;
+    color: var(--dark);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--dark);
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+  }
+  
+  .singin-button {
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .singin-button:hover {
+    background-color: var(--dark-grey);
+  }
   

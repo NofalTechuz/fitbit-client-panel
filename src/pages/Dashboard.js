@@ -52,7 +52,6 @@ const Dashboard = () => {
     fetchHelps();
   }, []);
 
-
   if (loading) {
     return (
       <Container>
@@ -87,39 +86,39 @@ const Dashboard = () => {
         <ul className="insights">
           <NavLink to="/exercisescategory">
             <li>
-              <i className="bx bx-calendar-check"></i>
+              <i class="bx bx-dumbbell"></i>
               <span className="info">
                 <h3>{exercises.length}</h3>
                 <p>Total Exercises</p>
               </span>
             </li>
           </NavLink>
-          <NavLink to="/dietplan"> 
-          <li>
-            <i className="bx bx-show-alt"></i>
-            <span className="info">
-              <h3>{dietPlans.length}</h3>
-              <p>Total Diet Plans</p>
-            </span>
-          </li>
-            </NavLink>
-            <NavLink to="/chat">
-          <li>
-            <i className="bx bx-line-chart"></i>
-            <span className="info">
-              <h3>14,721</h3>
-              <p>Chat</p>
-            </span>
-          </li>
+          <NavLink to="/dietplan">
+            <li>
+              <i class="bx bx-cheese"></i>
+              <span className="info">
+                <h3>{dietPlans.length}</h3>
+                <p>Total Diet Plans</p>
+              </span>
+            </li>
+          </NavLink>
+          <NavLink to="/chat">
+            <li>
+            <i class='bx bx-message-rounded-dots' ></i>
+              <span className="info">
+                <h3>14,721</h3>
+                <p>Chat</p>
+              </span>
+            </li>
           </NavLink>
           <NavLink to="/helps">
-          <li>
-            <i className="bx bx-dollar-circle"></i>
-            <span className="info">
-              <h3>{helps.length}</h3>
-              <p>Total Helps Documents</p>
-            </span>
-          </li>
+            <li>
+            <i class='bx bx-donate-heart'></i>
+              <span className="info">
+                <h3>{helps.length}</h3>
+                <p>Total Helps Documents</p>
+              </span>
+            </li>
           </NavLink>
         </ul>
 

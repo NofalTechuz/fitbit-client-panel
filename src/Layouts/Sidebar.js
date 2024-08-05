@@ -8,10 +8,10 @@ const Sidebar = () => {
 
   const navigationLinks = [
     { href: '/dashboard', text: 'Dashboard', icon: 'bx bxs-dashboard' },
-    { href: '/exercisescategory', text: 'Exercises', icon: 'bx bx-store-alt' },
+    { href: '/exercisescategory', text: 'Exercises', icon: 'bx bx-dumbbell' },
     { href: '/chat', text: 'Chat', icon: 'bx bx-message-square-dots' },
-    { href: '/dietplan', text: 'Diet Plan', icon: 'bx bx-group' },
-    { href: '/helps', text: 'Helps', icon: 'bx bx-analyse' },
+    { href: '/dietplan', text: 'Diet Plan', icon: 'bx bx-cheese' },
+    { href: '/helps', text: 'Helps', icon: 'bx bx-donate-heart' },
     { href: '/settings', text: 'Settings', icon: 'bx bx-cog' },
   ];
 
