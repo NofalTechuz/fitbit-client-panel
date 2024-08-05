@@ -14,7 +14,6 @@ const Chat = () => {
 
   return (
     <Container>
- 
       <div className="bottom-data">
         <div className="orders">
           <div className="chat">
@@ -23,9 +22,52 @@ const Chat = () => {
               <div>
                 <h4 className="chat__header">ACTIVE USERS</h4>
                 <div className="chat__users">
-                  <p>Username 1</p>
-                  <p>Username 2</p>
-                  <p>Username 3</p>
+                  <div className="chat__user">
+                    <div className="chat__userImg">
+                      <img
+                        src="assets/img/defultavtar.png"
+                        alt="Profile"
+                        height={50}
+                        width={50}
+                        style={{ borderRadius: '50%' }}
+                      />
+                    </div>
+                    <div className="chat__userName">
+                      <p className="user__name">Username 1</p>
+                      <p className="user__location">Ahmedabad</p>
+                    </div>
+                  </div>
+                  <div className="chat__user">
+                    <div className="chat__userImg">
+                      <img
+                        src="assets/img/defultavtar.png"
+                        alt="Profile"
+                        height={50}
+                        width={50}
+                        style={{ borderRadius: '50%' }}
+                      />
+                    </div>
+                    <div className="chat__userName">
+                      <p className="user__name">Username 2</p>
+                      <p className="user__location">Surat</p>
+                    </div>
+                  </div>
+
+                  <div className="chat__user">
+                    <div className="chat__userImg">
+                      <img
+                        src="assets/img/defultavtar.png"
+                        alt="Profile"
+                        height={50}
+                        width={50}
+                        style={{ borderRadius: '50%' }}
+                      />
+                    </div>
+                    <div className="chat__userName">
+                      <p className="user__name">Username 3</p>
+                      <p className="user__location">Palanpur</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

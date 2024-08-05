@@ -876,8 +876,30 @@ body{
   }
   .chat__users > * {
     margin-bottom: 10px;
-    color: #607eaa;
+    color: var(--dark);
     font-size: 14px;
+  }
+  .chat__user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .chat__user:hover{
+    color: var(--primary);
+    cursor: pointer;
+  }
+
+  .chat__userName{
+    margin-left: 10px;
+  }
+  .user__name{
+    font-size: 16px;
+  }
+
+  .user__location{
+    font-size: 12px;
+    color: #888;
   }
   .online__users > * {
     margin-bottom: 10px;
@@ -982,25 +1004,34 @@ body{
 
 
 
-
   .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
+    background-color:var(--light); /* Light grey background */
   }
   
   .signin-container {
-    background-color: var(--light);
+    background-color: #fff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 40%;
+    width: 30%; /* Fixed width for better layout control */
+    text-align: center; /* Center-align text */
   }
   
+
+  .signin-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .signin-form {
     display: flex;
     flex-direction: column;
+    margin-top: 20px; /* Add margin to separate form from the logo and heading */
   }
   
   .signin-form h2 {
@@ -1010,6 +1041,7 @@ body{
   
   .form-group {
     margin-bottom: 15px;
+    text-align: left; /* Align labels and inputs to the left */
   }
   
   .form-group label {
@@ -1033,9 +1065,46 @@ body{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add margin to separate button from the form */
   }
   
   .singin-button:hover {
     background-color: var(--dark-grey);
+  }
+  
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .remember-forgot label {
+    display: flex;
+    align-items: center;
+    color: var(--dark);
+  }
+  
+  .remember-forgot a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .remember-forgot a:hover {
+    text-decoration: underline;
+  }
+  
+  .signup-link {
+    margin-top: 20px;
+    color: var(--dark);
+  }
+  
+  .signup-link a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
   }
   

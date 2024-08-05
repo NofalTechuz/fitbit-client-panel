@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const Signin = () => {
@@ -16,32 +16,34 @@ const Signin = () => {
         const values = { email, password };
 
         try {
-            console.log(process.env.REACT_APP_SERVER_URL)
             const response = await axios.post(
-              `${process.env.REACT_APP_SERVER_URL}/auth/login`,
-              values
+                `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+                values
             );
             const token = response.data.token;
-            // const user = response.data.user;
 
             Cookies.set('token', token, {
-              expires: 7,
-              path: '/',
-              secure: false,
-              sameSite: 'Lax',
+                expires: 7,
+                path: '/',
+                secure: false,
+                sameSite: 'Lax',
             });
             navigate('/dashboard');
-          } catch (error) {
-            console.log(error)
-                alert("Invalid credentials")
-          }
+        } catch (error) {
+            console.log(error);
+            alert("Invalid credentials");
+        }
     };
 
     return (
         <div className="wrapper">
             <div className="signin-container">
+                <div className='signin-logo'>
+                <img src="logo512.png" alt="Logo" style={{ width: '50px', paddingRight: '10px'}} />
+                <h1>FitBit </h1>
+                </div>
+                <p style={{marginTop: '20px'}}>Sign into your account</p>
                 <form className="signin-form" onSubmit={handleSubmit}>
-                    <h2>Sign In</h2>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
                         <input 
@@ -62,8 +64,20 @@ const Signin = () => {
                             required 
                         />
                     </div>
-                    <button className='singin-button' type="submit">Sign In</button>
+                    <div className="remember-forgot">
+                        <label>
+                            <input type="checkbox" />
+                            <span style={{marginLeft:5}}>
+                            Remember me
+                            </span>
+                        </label>
+                        <NavLink href="/forgot-password">Forgot Password?</NavLink>
+                    </div>
+                    <button className="singin-button" type="submit">Sign In</button>
                 </form>
+                <div className="signup-link">
+                    <p>Don’t have an account yet? <NavLink href="/signup">Sign Up</NavLink></p>
+                </div>
             </div>
         </div>
     );
