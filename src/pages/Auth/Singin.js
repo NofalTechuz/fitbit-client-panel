@@ -45,7 +45,7 @@ const Signin = () => {
                 <p style={{marginTop: '20px'}}>Sign into your account</p>
                 <form className="signin-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="email">Email:</label>
+                        <label htmlFor="email">Email Or Username:</label>
                         <input 
                             type="text" 
                             id="email" 
@@ -71,12 +71,12 @@ const Signin = () => {
                             Remember me
                             </span>
                         </label>
-                        <NavLink href="/forgot-password">Forgot Password?</NavLink>
+                        <NavLink to="/forgot-password">Forgot Password?</NavLink>
                     </div>
                     <button className="singin-button" type="submit">Sign In</button>
                 </form>
                 <div className="signup-link">
-                    <p>Don’t have an account yet? <NavLink href="/signup">Sign Up</NavLink></p>
+                    <p>Don’t have an account yet? <NavLink to="/signup">Sign Up</NavLink></p>
                 </div>
             </div>
         </div>

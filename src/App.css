@@ -882,7 +882,6 @@ body{
   .chat__user {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
   }
 
   .chat__user:hover{
@@ -1002,62 +1001,69 @@ body{
 
   
 
-
-
-  .wrapper {
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color:var(--light); /* Light grey background */
-  }
-  
-  .signin-container {
+    height: 100vh;
+    background-color: var(--light);
+}
+
+.signin-container {
     background-color: #fff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%; /* Fixed width for better layout control */
-    text-align: center; /* Center-align text */
-  }
-  
+    width: 30%;
+    text-align: center;
+}
 
-  .signin-logo{
+.signin-logo {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .signin-form {
+.signin-form {
     display: flex;
     flex-direction: column;
-    margin-top: 20px; /* Add margin to separate form from the logo and heading */
-  }
-  
-  .signin-form h2 {
+    margin-top: 20px;
+}
+
+.signin-form h2 {
     margin-bottom: 20px;
     color: var(--dark);
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 15px;
-    text-align: left; /* Align labels and inputs to the left */
-  }
-  
-  .form-group label {
+    text-align: left;
+}
+
+.form-group label {
     display: block;
     margin-bottom: 5px;
     color: var(--dark);
-  }
-  
-  .form-group input {
+}
+
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--grey);
     border-radius: 5px;
-  }
-  
-  .singin-button {
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group-row .form-group {
+    width: 48%;
+}
+
+.singin-button {
     background-color: var(--primary);
     color: var(--light);
     padding: 10px;
@@ -1065,46 +1071,68 @@ body{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px; /* Add margin to separate button from the form */
-  }
-  
-  .singin-button:hover {
+    margin-top: 10px;
+}
+
+.singin-button:hover {
     background-color: var(--dark-grey);
-  }
-  
-  .remember-forgot {
+}
+
+.remember-forgot {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-  }
-  
-  .remember-forgot label {
+}
+
+.remember-forgot label {
     display: flex;
     align-items: center;
     color: var(--dark);
-  }
-  
-  .remember-forgot a {
+}
+
+.remember-forgot a {
     color: var(--primary);
     text-decoration: none;
-  }
-  
-  .remember-forgot a:hover {
+}
+
+.remember-forgot a:hover {
     text-decoration: underline;
-  }
-  
-  .signup-link {
+}
+
+.signup-link {
     margin-top: 20px;
     color: var(--dark);
-  }
-  
-  .signup-link a {
+}
+
+.signup-link a {
     color: var(--primary);
     text-decoration: none;
-  }
-  
-  .signup-link a:hover {
+}
+
+.signup-link a:hover {
     text-decoration: underline;
-  }
-  
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin: 10px 0;
+}
+
+
+.radio-child {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.radio-child input {
+  margin-right: 5px;
+}
+
+.radio-group label {
+    margin-right: 20px;
+    color: var(--dark);
+}

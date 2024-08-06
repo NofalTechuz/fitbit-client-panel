@@ -1,4 +1,4 @@
-window.onload = () => {
+const initializeSidebar = () => {
   const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 
   sideLinks.forEach((item) => {
@@ -13,6 +13,8 @@ window.onload = () => {
 
   const menuBar = document.querySelector('.content nav .bx.bx-menu');
   const sideBar = document.querySelector('.sidebar');
+  console.log(menuBar)
+  console.log(sideBar)
 
   menuBar?.addEventListener('click', () => {
     sideBar?.classList.toggle('close');
@@ -24,7 +26,7 @@ window.onload = () => {
 
   searchBtn?.addEventListener('click', function (e) {
     if (window.innerWidth < 576) {
-      e.preventDefault;
+      e.preventDefault();
       searchForm?.classList.toggle('show');
       if (searchForm?.classList.contains('show')) {
         searchBtnIcon?.classList.replace('bx-search', 'bx-x');
@@ -34,7 +36,7 @@ window.onload = () => {
     }
   });
 
-  window?.addEventListener('resize', () => {
+  const handleResize = () => {
     if (window.innerWidth < 768) {
       sideBar?.classList.add('close');
     } else {
@@ -44,15 +46,38 @@ window.onload = () => {
       searchBtnIcon?.classList.replace('bx-x', 'bx-search');
       searchForm?.classList.remove('show');
     }
-  });
+  };
+
+  window.addEventListener('resize', handleResize);
 
   const toggler = document.getElementById('theme-toggle');
 
   toggler?.addEventListener('change', function () {
     if (this.checked) {
-      document.body?.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
-      document.body?.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
   });
+
+  // Cleanup listeners on route change
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
 };
+
+const observeDOMChanges = () => {
+  const observer = new MutationObserver(() => {
+    initializeSidebar();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+
+  // Initialize on script load
+  initializeSidebar();
+};
+
+document.addEventListener('DOMContentLoaded', observeDOMChanges);
