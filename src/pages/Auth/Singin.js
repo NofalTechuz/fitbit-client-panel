@@ -71,7 +71,7 @@ const Signin = () => {
                             Remember me
                             </span>
                         </label>
-                        <NavLink to="/forgot-password">Forgot Password?</NavLink>
+                        <NavLink to="/forgetpassword">Forgot Password?</NavLink>
                     </div>
                     <button className="singin-button" type="submit">Sign In</button>
                 </form>

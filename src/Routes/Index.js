@@ -10,6 +10,7 @@ import Singin from '../pages/Auth/Singin';
 import ClientAuthGuard from '../shared/ClientAuthGuard';
 import ClientPageGuard from '../shared/ClientPageGuard';
 import Signup from '../pages/Auth/Signup';
+import ForgetPassword from '../pages/Auth/ForgetPassword';
 
 function Index() {
   return (
@@ -25,6 +26,7 @@ function Index() {
         <Route path='/settings' element={<ClientAuthGuard> <Settings /> </ClientAuthGuard>} />
         <Route path='/signin' element={<ClientPageGuard><Singin /></ClientPageGuard>} />
         <Route path='/signup' element={<ClientPageGuard><Signup /></ClientPageGuard>} />
+        <Route path='/forgetpassword' element={<ClientPageGuard><ForgetPassword /></ClientPageGuard>} />
       </Routes>
     </>
   );
