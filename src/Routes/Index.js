@@ -19,7 +19,7 @@ function Index() {
         <Route exact path='/' element={<ClientAuthGuard> <Dashboard /></ClientAuthGuard>} />
         <Route path='/dashboard/:id' element={<ClientAuthGuard> <Dashboard /> </ClientAuthGuard>} />
         <Route path='/exercisescategory/:id' element={<ClientAuthGuard> <ExerciseCategory /> </ClientAuthGuard>} />
-        <Route path='/exercisescategory/:id/:name/:id' element={<ClientAuthGuard> <Exercise /> </ClientAuthGuard>} />
+        <Route path='/exercisescategory/:name/:id' element={<ClientAuthGuard> <Exercise /> </ClientAuthGuard>} />
         <Route path='/chat/:id' element={<ClientAuthGuard> <Chat /> </ClientAuthGuard>} />
         <Route path='/dietplan/:id' element={<ClientAuthGuard> <DietPlan /> </ClientAuthGuard>} />
         <Route path='/helps/:id' element={<ClientAuthGuard> <Helps /> </ClientAuthGuard>} />

@@ -115,6 +115,7 @@ const Signup = () => {
   };
 
   const responseMessage = async (response) => {
+    setIsbtndisabled(true);
     try {
       const googleToken = response.credential;
       const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/google-login`, { token: googleToken });
@@ -133,6 +134,8 @@ const Signup = () => {
       console.log(error);
       alert('Google login failed');
     }
+
+    setIsbtndisabled(false);
   };
   const errorMessage = (error) => {
     alert(error);
@@ -234,7 +237,13 @@ const Signup = () => {
             className="singin-button"
             type="submit"
           >
-            Sign Up
+            {isbtndisabled ? (
+              <div className="singin-spinner">
+                <div className="singin-spinner-child"></div>
+              </div>
+            ) : (
+              'Sign Up'
+            )}
           </button>
           <div className="or">
             <span>or</span>

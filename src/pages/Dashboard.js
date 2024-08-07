@@ -1,10 +1,11 @@
 import React, {  useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import Container from '../Layouts/Container';
 import axiosInstance from '../Utils/axiosInstance';
 import Loading from '../Utils/Loading';
 
 const Dashboard = () => {
+  const {id} = useParams();
   const [exercises, setExercises] = useState([]);
   const [dietPlans, setDietPlans] = useState([]);
   const [helps, setHelps] = useState([]);
@@ -82,7 +83,7 @@ const Dashboard = () => {
         </div>
 
         <ul className="insights">
-          <NavLink to="/exercisescategory">
+          <NavLink to={`/exercisescategory/${id}`}>
             <li>
               <i class="bx bx-dumbbell"></i>
               <span className="info">
@@ -91,7 +92,7 @@ const Dashboard = () => {
               </span>
             </li>
           </NavLink>
-          <NavLink to="/dietplan">
+          <NavLink to={`/dietplan/${id}`}>
             <li>
               <i class="bx bx-cheese"></i>
               <span className="info">
@@ -100,7 +101,7 @@ const Dashboard = () => {
               </span>
             </li>
           </NavLink>
-          <NavLink to="/chat">
+          <NavLink to={`/chat/${id}`}>
             <li>
             <i class='bx bx-message-rounded-dots' ></i>
               <span className="info">
@@ -109,7 +110,7 @@ const Dashboard = () => {
               </span>
             </li>
           </NavLink>
-          <NavLink to="/helps">
+          <NavLink to={`/helps/${id}`}>
             <li>
             <i class='bx bx-donate-heart'></i>
               <span className="info">

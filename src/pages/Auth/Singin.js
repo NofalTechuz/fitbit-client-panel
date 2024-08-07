@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { GoogleLogin } from '@react-oauth/google';
@@ -10,8 +10,6 @@ const Signin = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [isbtndisabled, setIsbtndisabled] = useState(false);
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +27,7 @@ const Signin = () => {
         secure: false,
         sameSite: 'Lax',
       });
-      
+
       const userDetail = await DecodeToken(token);
 
       navigate(`/dashboard/${userDetail.id}`);
@@ -42,25 +40,28 @@ const Signin = () => {
   };
 
   const responseMessage = async (response) => {
+    setIsbtndisabled(true);
     try {
-        const googleToken = response.credential;
-        const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/google-login`, { token: googleToken });
-        const token = result.data.token;
-  
-        Cookies.set('token', token, {
-          expires: 7,
-          path: '/',
-          secure: false,
-          sameSite: 'Lax',
-        });
-        
-        const userDetail = await DecodeToken(token);
+      const googleToken = response.credential;
+      const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/google-login`, { token: googleToken });
+      const token = result.data.token;
 
-        navigate(`/dashboard/${userDetail.id}`);
-      } catch (error) {
-        console.log(error);
-        alert('Google login failed');
-      }
+      Cookies.set('token', token, {
+        expires: 7,
+        path: '/',
+        secure: false,
+        sameSite: 'Lax',
+      });
+
+      const userDetail = await DecodeToken(token);
+
+      navigate(`/dashboard/${userDetail.id}`);
+    } catch (error) {
+      console.log(error);
+      alert('Google login failed');
+    }
+
+    setIsbtndisabled(false);
   };
   const errorMessage = (error) => {
     alert(error);
@@ -103,13 +104,19 @@ const Signin = () => {
             className="singin-button"
             type="submit"
           >
-            Sign In
+            {isbtndisabled ? (
+              <div className="singin-spinner">
+                <div className="singin-spinner-child"></div>
+              </div>
+            ) : (
+              'Sign In'
+            )}
           </button>
           <div className="or">
             <span>or</span>
           </div>
-          <div className='signin-button'>
-          <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+          <div className="signin-button">
+            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} useOneTap />
           </div>
         </form>
 

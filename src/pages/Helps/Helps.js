@@ -56,9 +56,6 @@ const Helps = () => {
             width="100%"
             height="600px"
           />
-          <a href={modalContent.file} target="_blank" rel="noopener noreferrer">
-            <button className='download-btn'>Download</button>
-          </a>
         </div>
 
         )
@@ -122,11 +119,13 @@ const Helps = () => {
                     </td>
                     <td style={{ width: '150px' }}>
                       <button
+                        type="button"
+                        style={{ cursor: 'pointer' }}
                         className="download-btn"
                         onClick={() => handleDownloadClick(item.fileType, item.file)}
                       >
                         <i className="bx bx-cloud-download"></i>
-                        <span>Download</span>
+                        <span>View</span>
                       </button>
                     </td>
                   </tr>

@@ -34,7 +34,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <NavLink to="/dashboard">
+      <NavLink to={`/dashboard/${user?.id}`}>
         <span className="logo">
           <i className="bx bx-code-alt"></i>
           <div className="logo-name">

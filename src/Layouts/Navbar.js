@@ -1,8 +1,9 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useParams} from 'react-router-dom'
 
 
 const Navbar = () => {
+    const {id} = useParams();
   return (
     <nav>
     <i className='bx bx-menu'></i>
@@ -20,7 +21,7 @@ const Navbar = () => {
     </NavLink>
     <span className="profile">
 
-    <NavLink to="/settings" >
+    <NavLink to={`/settings/${id}`} >
         <img alt='img' src="/assets/img/logo.png" />
     </NavLink>
     </span>
