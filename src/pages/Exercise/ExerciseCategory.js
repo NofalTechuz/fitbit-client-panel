@@ -51,7 +51,7 @@ const ExerciseCategory = () => {
                 <i className="bx bx-calendar-check"></i>
                 <span className="info">
                   <h3>{category.name}</h3>
-                  <p>Paid Order</p>
+                  {/* <NavLink to={`/exercisescategory/${category.name}/${category.id}`} style={{ }} >Visit Category</NavLink> */}
                 </span>
               </li>
             </NavLink>

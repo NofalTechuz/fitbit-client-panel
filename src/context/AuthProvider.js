@@ -2,8 +2,7 @@ import { createContext, useState } from 'react'
 
 const AuthContext = createContext()
 function AuthProvider({ children }) {
-    const [user, setUser] = useState(9)
-    console.log(user)
+    const [user, setUser] = useState(null)
 
     return (
         <AuthContext.Provider value={{ user, setUser }}>

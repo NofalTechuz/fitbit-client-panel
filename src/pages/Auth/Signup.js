@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import Cookies from 'js-cookie';
+import { GoogleLogin } from '@react-oauth/google';
+import DecodeToken from '../../modules/DecodeToken';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState('');
@@ -12,6 +15,7 @@ const Signup = () => {
   const [phone, setPhone] = useState('');
   const [gender, setGender] = useState('');
   const [password, setPassword] = useState('');
+  const [isbtndisabled, setIsbtndisabled] = useState(false);
   const navigate = useNavigate();
 
   const [countries, setCountries] = useState([]);
@@ -35,56 +39,57 @@ const Signup = () => {
     const errors = {};
 
     if (!values.firstName) {
-        errors.firstName = "First name is required";
+      errors.firstName = 'First name is required';
     }
 
     if (!values.lastName) {
-        errors.lastName = "Last name is required";
+      errors.lastName = 'Last name is required';
     }
 
     if (!values.email) {
-        errors.email = "Email is required";
+      errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-        errors.email = "Invalid email address";
+      errors.email = 'Invalid email address';
     }
 
     if (!values.isdCode) {
-        errors.isdCode = "Country code is required";
+      errors.isdCode = 'Country code is required';
     }
 
     if (!values.mobileNumber) {
-        errors.mobileNumber = "Phone number is required";
+      errors.mobileNumber = 'Phone number is required';
     } else if (!/^[0-9]{10}$/.test(values.mobileNumber)) {
-        errors.mobileNumber = "Phone number must be 10 digits";
+      errors.mobileNumber = 'Phone number must be 10 digits';
     }
 
     if (!values.username) {
-        errors.username = "Username is required";
+      errors.username = 'Username is required';
     }
 
     if (!values.gender) {
-        errors.gender = "Gender is required";
+      errors.gender = 'Gender is required';
     }
 
     if (!values.password) {
-        errors.password = "Password is required";
+      errors.password = 'Password is required';
     } else if (values.password.length < 8) {
-        errors.password = "Password must be at least 8 characters long";
+      errors.password = 'Password must be at least 8 characters long';
     }
 
     return errors;
-}
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
-    const data = {
 
+    setIsbtndisabled(true);
+    const data = {
       firstName,
       lastName,
       email,
       username,
-      isdCode:coutnryCode,
-      mobileNumber:phone,
+      isdCode: coutnryCode,
+      mobileNumber: phone,
       gender,
       password,
       uuid: uuidv4(),
@@ -93,20 +98,45 @@ const Signup = () => {
 
     const formerror = validateForm(data);
     if (Object.keys(formerror).length > 0) {
-        alert(Object.values(formerror)[0]);
-        return;
+      alert(Object.values(formerror)[0]);
+      return;
     }
-    console.log(data)
+    console.log(data);
     try {
-        await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/user`,
-          data
-        );
-        navigate('/signin');
-      } catch (error) {
-        // toast.error(error?.response?.data?.message || error?.message || error);
-        console.error(error);
-      }
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/user`, data);
+      navigate('/signin');
+    } catch (error) {
+      alert(error?.response?.data?.message || error?.message || error);
+      // toast.error(error?.response?.data?.message || error?.message || error);
+      console.error(error);
+    }
+
+    setIsbtndisabled(false);
+  };
+
+  const responseMessage = async (response) => {
+    try {
+      const googleToken = response.credential;
+      const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/google-login`, { token: googleToken });
+      const token = result.data.token;
+
+      Cookies.set('token', token, {
+        expires: 7,
+        path: '/',
+        secure: false,
+        sameSite: 'Lax',
+      });
+      const userDetail = await DecodeToken(token);
+
+      navigate(`/dashboard/${userDetail.id}`);
+    } catch (error) {
+      console.log(error);
+      alert('Google login failed');
+    }
+  };
+  const errorMessage = (error) => {
+    alert(error);
+    console.log(error);
   };
 
   return (
@@ -169,23 +199,11 @@ const Signup = () => {
                 <label htmlFor="male">Male</label>
               </div>
               <div className="radio-child">
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  value="2"
-                  onChange={(e) => setGender(e.target.value)}
-                />
+                <input type="radio" id="female" name="gender" value="2" onChange={(e) => setGender(e.target.value)} />
                 <label htmlFor="female">Female</label>
               </div>
               <div className="radio-child">
-                <input
-                  type="radio"
-                  id="other"
-                  name="gender"
-                  value="3"
-                  onChange={(e) => setGender(e.target.value)}
-                />
+                <input type="radio" id="other" name="gender" value="3" onChange={(e) => setGender(e.target.value)} />
                 <label htmlFor="other">Other</label>
               </div>
             </div>
@@ -210,10 +228,24 @@ const Signup = () => {
               <span style={{ marginLeft: 5 }}>Remember me</span>
             </label>
           </div>
-          <button className="singin-button" type="submit">
+          <button
+            disabled={isbtndisabled}
+            style={isbtndisabled ? { cursor: 'not-allowed' } : null}
+            className="singin-button"
+            type="submit"
+          >
             Sign Up
           </button>
+          <div className="or">
+            <span>or</span>
+          </div>
+          <div className="signin-button">
+            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+          </div>
         </form>
+        <p style={{ textAlign: 'left', fontSize: '12px', marginTop: '20px', color: '#363949' }}>
+          By signing up, you agree to the Website.com Service Terms & Conditions and the Privacy Policy.
+        </p>
         <div className="signup-link">
           <p>
             Already have an account? <NavLink to="/signin">SignIn</NavLink>

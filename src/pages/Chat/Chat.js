@@ -18,14 +18,14 @@ const Chat = () => {
         <div className="orders">
           <div className="chat">
             <div className="chat__sidebar">
-              <h2>Open Chat</h2>
+              {/* <h2>Open Chat</h2> */}
               <div>
-                <h4 className="chat__header">ACTIVE USERS</h4>
+                <h4 className="chat__header" style={{marginTop:0}}>USERS</h4>
                 <div className="chat__users">
                   <div className="chat__user">
                     <div className="chat__userImg">
                       <img
-                        src="assets/img/defultavtar.png"
+                        src="/assets/img/defultavtar.png"
                         alt="Profile"
                         height={50}
                         width={50}
@@ -40,7 +40,7 @@ const Chat = () => {
                   <div className="chat__user">
                     <div className="chat__userImg">
                       <img
-                        src="assets/img/defultavtar.png"
+                        src="/assets/img/defultavtar.png"
                         alt="Profile"
                         height={50}
                         width={50}
@@ -56,7 +56,7 @@ const Chat = () => {
                   <div className="chat__user">
                     <div className="chat__userImg">
                       <img
-                        src="assets/img/defultavtar.png"
+                        src="/assets/img/defultavtar.png"
                         alt="Profile"
                         height={50}
                         width={50}
@@ -127,6 +127,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
+      
     </Container>
   );
 };

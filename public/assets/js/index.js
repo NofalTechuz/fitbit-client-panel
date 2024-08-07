@@ -13,8 +13,7 @@ const initializeSidebar = () => {
 
   const menuBar = document.querySelector('.content nav .bx.bx-menu');
   const sideBar = document.querySelector('.sidebar');
-  console.log(menuBar)
-  console.log(sideBar)
+
 
   menuBar?.addEventListener('click', () => {
     sideBar?.classList.toggle('close');

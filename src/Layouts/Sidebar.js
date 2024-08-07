@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import DecodeToken from '../modules/DecodeToken';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -8,28 +9,36 @@ const Sidebar = () => {
     return window.location.pathname === href;
   };
 
+  const [user, setUser] = useState(null);
+
   const navigationLinks = [
-    { href: '/dashboard', text: 'Dashboard', icon: 'bx bxs-dashboard' },
-    { href: '/exercisescategory', text: 'Exercises', icon: 'bx bx-dumbbell' },
-    { href: '/chat', text: 'Chat', icon: 'bx bx-message-square-dots' },
-    { href: '/dietplan', text: 'Diet Plan', icon: 'bx bx-cheese' },
-    { href: '/helps', text: 'Helps', icon: 'bx bx-donate-heart' },
-    { href: '/settings', text: 'Settings', icon: 'bx bx-cog' },
+    { href: `/dashboard/${user?.id}`, text: 'Dashboard', icon: 'bx bxs-dashboard' },
+    { href: `/exercisescategory/${user?.id}`, text: 'Exercises', icon: 'bx bx-dumbbell' },
+    { href: `/chat/${user?.id}`, text: 'Chat', icon: 'bx bx-message-square-dots' },
+    { href: `/dietplan/${user?.id}`, text: 'Diet Plan', icon: 'bx bx-cheese' },
+    { href: `/helps/${user?.id}`, text: 'Helps', icon: 'bx bx-donate-heart' },
+    { href: `/settings/${user?.id}`, text: 'Settings', icon: 'bx bx-cog' },
   ];
 
-
   const logout = () => {
-    Cookies.remove("token");
-    navigate("/signin");
+    setUser(null);
+    Cookies.remove('token');
+    navigate('/signin');
   };
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+
+    setUser(DecodeToken(token));
+  }, []);
 
   return (
     <div className="sidebar">
-      <NavLink to="#">
+      <NavLink to="/dashboard">
         <span className="logo">
           <i className="bx bx-code-alt"></i>
           <div className="logo-name">
-            <span>Asmr</span>Prog
+            <span>Fit</span>Bit
           </div>
         </span>
       </NavLink>

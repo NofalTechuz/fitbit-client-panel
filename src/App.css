@@ -1052,6 +1052,7 @@ body{
     padding: 10px;
     border: 1px solid var(--grey);
     border-radius: 5px;
+    background-color: transparent;
 }
 
 .form-group-row {

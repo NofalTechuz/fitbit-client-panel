@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Container from '../Layouts/Container';
 import axiosInstance from '../Utils/axiosInstance';
@@ -14,7 +14,6 @@ const Dashboard = () => {
     setLoading(true);
     try {
       const response = await axiosInstance.get('/exercise');
-      console.log(response.data);
       setExercises(response.data);
     } catch (error) {
       console.error(error);
@@ -26,7 +25,6 @@ const Dashboard = () => {
     setLoading(true);
     try {
       const response = await axiosInstance.get('/dietplan');
-      console.log(response.data);
       setDietPlans(response.data);
     } catch (error) {
       console.error(error);
@@ -38,13 +36,13 @@ const Dashboard = () => {
     setLoading(true);
     try {
       const response = await axiosInstance.get('/helps');
-      console.log(response.data);
       setHelps(response.data);
     } catch (error) {
       console.error(error);
     }
     setLoading(false);
   };
+
 
   useEffect(() => {
     fetchExercises();

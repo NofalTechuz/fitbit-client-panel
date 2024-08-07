@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../../Layouts/Container';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import axiosInstance from '../../Utils/axiosInstance';
 import Loading from '../../Utils/Loading';
 
 const Settings = () => {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {id} = useParams();
 
-  const fetchUser = async () => {
-    try {
-      const response = await axiosInstance.get('/user/6');
-      console.log(response.data);
-      setUser(response.data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axiosInstance.get(`/user/${id}`);
+        console.log(response.data);
+        setUser(response.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    };
+
     fetchUser();
-  }, []);
+  }, [id]);
 
   if (loading) {
     return <Container><Loading /></Container>;
@@ -54,7 +56,7 @@ const Settings = () => {
           </div>
           <div className="profile-container">
             <div className="profile-header">
-              <img src={user.profileImage || 'assets/img/defultavtar.png'} alt="Profile" className="profile-image" />
+              <img src={user.profileImage || '/assets/img/defultavtar.png'} alt="Profile" className="profile-image" />
               <h2>
                 {user.firstName} {user.lastName}
               </h2>

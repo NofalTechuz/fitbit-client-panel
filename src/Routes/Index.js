@@ -17,13 +17,13 @@ function Index() {
     <>
       <Routes>
         <Route exact path='/' element={<ClientAuthGuard> <Dashboard /></ClientAuthGuard>} />
-        <Route path='/dashboard' element={<ClientAuthGuard> <Dashboard /> </ClientAuthGuard>} />
-        <Route path='/exercisescategory' element={<ClientAuthGuard> <ExerciseCategory /> </ClientAuthGuard>} />
-        <Route path='/exercisescategory/:name/:id' element={<ClientAuthGuard> <Exercise /> </ClientAuthGuard>} />
-        <Route path='/chat' element={<ClientAuthGuard> <Chat /> </ClientAuthGuard>} />
-        <Route path='/dietplan' element={<ClientAuthGuard> <DietPlan /> </ClientAuthGuard>} />
-        <Route path='/helps' element={<ClientAuthGuard> <Helps /> </ClientAuthGuard>} />
-        <Route path='/settings' element={<ClientAuthGuard> <Settings /> </ClientAuthGuard>} />
+        <Route path='/dashboard/:id' element={<ClientAuthGuard> <Dashboard /> </ClientAuthGuard>} />
+        <Route path='/exercisescategory/:id' element={<ClientAuthGuard> <ExerciseCategory /> </ClientAuthGuard>} />
+        <Route path='/exercisescategory/:id/:name/:id' element={<ClientAuthGuard> <Exercise /> </ClientAuthGuard>} />
+        <Route path='/chat/:id' element={<ClientAuthGuard> <Chat /> </ClientAuthGuard>} />
+        <Route path='/dietplan/:id' element={<ClientAuthGuard> <DietPlan /> </ClientAuthGuard>} />
+        <Route path='/helps/:id' element={<ClientAuthGuard> <Helps /> </ClientAuthGuard>} />
+        <Route path='/settings/:id' element={<ClientAuthGuard> <Settings /> </ClientAuthGuard>} />
         <Route path='/signin' element={<ClientPageGuard><Singin /></ClientPageGuard>} />
         <Route path='/signup' element={<ClientPageGuard><Signup /></ClientPageGuard>} />
         <Route path='/forgetpassword' element={<ClientPageGuard><ForgetPassword /></ClientPageGuard>} />
