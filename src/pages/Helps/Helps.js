@@ -124,7 +124,7 @@ const Helps = () => {
                         className="download-btn"
                         onClick={() => handleDownloadClick(item.fileType, item.file)}
                       >
-                        <i className="bx bx-cloud-download"></i>
+                        <i className="bx bx-low-vision"></i>
                         <span>View</span>
                       </button>
                     </td>

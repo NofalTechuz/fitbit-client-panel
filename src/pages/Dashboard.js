@@ -76,10 +76,10 @@ const Dashboard = () => {
               </li>
             </ul>
           </div>
-          <NavLink to="#" className="report">
+          {/* <NavLink to="#" className="report">
             <i className="bx bx-cloud-download"></i>
             <span>Download CSV</span>
-          </NavLink>
+          </NavLink> */}
         </div>
 
         <ul className="insights">

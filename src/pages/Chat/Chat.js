@@ -56,7 +56,6 @@ const Chat = () => {
       try {
         const response = await axiosInstance.get(`/chats/${senderId}/${receiverId}`);
         setChats(response.data);
-
         setReceiverName(users.find((user) => user.id === parseInt(receiverId)));
       } catch (error) {
         console.error(error);
@@ -87,6 +86,24 @@ const Chat = () => {
     fetchUsers();
     setSenderId(id);
   }, [id]);
+
+
+
+  const CheckFileType = ({ file }) => {
+    if (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg') {
+      return <i className="bx bxs-file-image" style={{ fontSize: '50px', color: '#FF6F61' }}></i>;
+    } else if (file.type === 'video/mp4') {
+      return <i className="bx bxs-file-image" style={{ fontSize: '50px', color: '#1E90FF' }}></i>;
+    } else if (file.type === 'audio/mpeg' || file.type === 'audio/wav' || file.type === 'audio/ogg') {
+      return <i className="bx bxs-file" style={{ fontSize: '50px', color: '#32CD32' }}></i>;
+    } else if (file.type === 'application/pdf') {
+      return <i className="bx bxs-file-pdf" style={{ fontSize: '50px', color: '#FF4500' }}></i>;
+    } else if (file.type === 'text/plain') {
+      return <i className="bx bxs-file" style={{ fontSize: '50px', color: '#FFD700' }}></i>;
+    } else {
+      return <i className="bx bxs-file-blank" style={{ fontSize: '50px', color: '#A9A9A9' }}></i>;
+    }    
+  };
 
   if (loading) {
     return (
@@ -180,7 +197,7 @@ const Chat = () => {
                           </button>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <i className="bx bxs-file-blank" style={{ fontSize: '50px' }}></i>
+                          <CheckFileType file={file} />
                         </div>
                         <p style={{ marginTop: '10px' }}>{file.name.substring(0, 10)}...</p>
                       </div>
