@@ -12,7 +12,7 @@ const Chat = () => {
   const [receiverId, setReceiverId] = useState(null);
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState('');
-  const [file_id, setFileId] = useState(null);
+  // const [file_id, setFileId] = useState(null);
   const [senderName, setSenderName] = useState({});
   const [receiverName, setReceiverName] = useState({});
 
@@ -26,7 +26,7 @@ const Chat = () => {
         setReceiverId(response.data[0].id);
       }
 
-      setSenderName(response.data.find((user) => user.id == id));
+      setSenderName(response.data.find((user) => user.id === parseInt(id)));
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +38,7 @@ const Chat = () => {
       const response = await axiosInstance.get(`/chats/${senderId}/${receiverId}`);
       setChats(response.data);
 
-      setReceiverName(users.find((user) => user.id == receiverId));
+      setReceiverName(users.find((user) => user.id === parseInt(receiverId)));
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +52,7 @@ const Chat = () => {
         sender_id: senderId,
         reciver_id: receiverId,
         message,
-        chat_file_id: file_id,
+        chat_file_id: null,
       });
       fetchChats();
       setMessage('');
@@ -67,6 +67,7 @@ const Chat = () => {
 
   useEffect(() => {
     fetchUsers();
+    setSenderId(id)
   }, []);
 
   if (loading) {
@@ -103,7 +104,7 @@ const Chat = () => {
                           </div>
                           <div className="chat__userName">
                             <p className="user__name">
-                              {user.id == id ? 'You' : user.firstName + ' ' + user.lastName}
+                              {user.id === parseInt(id) ? 'You' : user.firstName + ' ' + user.lastName}
                             </p>
                             <p className="user__location">{user.mobileNumber}</p>
                           </div>
@@ -135,12 +136,12 @@ const Chat = () => {
                 {chats.length > 0
                   ? chats.map((chat) => (
                       <div className="message__chats" key={chat.id}>
-                        <p className={chat.sender_id == senderId ? 'sender__name' : 'reciver__name'}>
-                          {chat.sender_id == senderId
+                        <p className={chat.sender_id === parseInt(senderId) ? 'sender__name' : 'reciver__name'}>
+                          {chat.sender_id === parseInt(senderId)
                             ? senderName?.firstName + ' ' + senderName?.lastName
                             : receiverName?.firstName + ' ' + receiverName?.lastName}
                         </p>
-                        <div className={chat.sender_id == senderId ? 'message__sender' : 'message__recipient'}>
+                        <div className={chat.sender_id === parseInt(senderId) ? 'message__sender' : 'message__recipient'}>
                           <p>{chat.message}</p>
                         </div>
                       </div>
