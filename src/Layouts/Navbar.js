@@ -14,7 +14,7 @@ const Navbar = () => {
         </div>
     </form>
     <input type="checkbox" id="theme-toggle" hidden />
-    <label for="theme-toggle" className="theme-toggle"></label>
+    <label htmlFor="theme-toggle" className="theme-toggle"></label>
     <NavLink to="#" className="notif">
         <i className='bx bx-bell'></i>
         <span className="count">12</span>

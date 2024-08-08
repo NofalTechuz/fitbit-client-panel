@@ -46,7 +46,7 @@ const ExerciseCategory = () => {
       <ul className="insights">
         {exerciseCategory.length > 0 &&
           exerciseCategory.map((category, index) => (
-            <NavLink to={`/exercisescategory/${category.name}/${category.id}`}>
+            <NavLink key={index} to={`/exercisescategory/${category.name}/${category.id}`}>
               <li key={index}>
                 <i className="bx bx-calendar-check"></i>
                 <span className="info">

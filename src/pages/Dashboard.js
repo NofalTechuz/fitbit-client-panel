@@ -85,7 +85,7 @@ const Dashboard = () => {
         <ul className="insights">
           <NavLink to={`/exercisescategory/${id}`}>
             <li>
-              <i class="bx bx-dumbbell"></i>
+              <i className="bx bx-dumbbell"></i>
               <span className="info">
                 <h3>{exercises.length}</h3>
                 <p>Total Exercises</p>
@@ -94,7 +94,7 @@ const Dashboard = () => {
           </NavLink>
           <NavLink to={`/dietplan/${id}`}>
             <li>
-              <i class="bx bx-cheese"></i>
+              <i className="bx bx-cheese"></i>
               <span className="info">
                 <h3>{dietPlans.length}</h3>
                 <p>Total Diet Plans</p>
@@ -103,7 +103,7 @@ const Dashboard = () => {
           </NavLink>
           <NavLink to={`/chat/${id}`}>
             <li>
-            <i class='bx bx-message-rounded-dots' ></i>
+            <i className='bx bx-message-rounded-dots' ></i>
               <span className="info">
                 <h3>14,721</h3>
                 <p>Chat</p>
@@ -112,7 +112,7 @@ const Dashboard = () => {
           </NavLink>
           <NavLink to={`/helps/${id}`}>
             <li>
-            <i class='bx bx-donate-heart'></i>
+            <i className='bx bx-donate-heart'></i>
               <span className="info">
                 <h3>{helps.length}</h3>
                 <p>Total Helps Documents</p>
