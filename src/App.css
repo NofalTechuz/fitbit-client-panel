@@ -1054,7 +1054,27 @@ body{
   .mediaUpload {
     display: none;
   }
-  
+  /* Media file container */
+.media__file {
+  margin-top: 10px;
+}
+
+/* Image styling */
+.media__file img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Video styling */
+.media__file video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Other styles remain the same */
+
 
 
 

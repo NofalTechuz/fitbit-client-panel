@@ -16,6 +16,7 @@ const Chat = () => {
   const [senderName, setSenderName] = useState({});
   const [receiverName, setReceiverName] = useState({});
   const [fetchChatStatus, setFetchChatStatus] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleMediaUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -33,22 +34,31 @@ const Chat = () => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    try {
-      // Assuming you want to upload files and send their IDs
-      const fileNames = selectedFiles.map((file) => file.name);
 
-      await axiosInstance.post('/chats', {
-        sender_id: senderId,
-        reciver_id: receiverId,
-        message,
-        chat_file_id: fileNames.length > 0 ? fileNames.join(',') : null,
+    if (!message && !selectedFiles.length) {
+      alert('Please enter a message or upload files.');
+      return;
+    }
+
+    setIsSending(true);
+    try {
+      const formData = new FormData();
+      formData.append('sender_id', senderId);
+      formData.append('reciver_id', receiverId);
+      formData.append('message', message);
+
+      selectedFiles.forEach((file) => {
+        formData.append('files', file);
       });
+
+      await axiosInstance.post('/chats', formData);
       setMessage('');
-      setSelectedFiles([]); // Clear the selected files after sending
+      setSelectedFiles([]);
       setFetchChatStatus(!fetchChatStatus);
     } catch (error) {
       console.error(error);
     }
+    setIsSending(false);
   };
 
   useEffect(() => {
@@ -65,7 +75,6 @@ const Chat = () => {
     fetchChats();
   }, [receiverId, senderId, users, fetchChatStatus]);
 
-  
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true);
@@ -87,8 +96,6 @@ const Chat = () => {
     setSenderId(id);
   }, [id]);
 
-
-
   const CheckFileType = ({ file }) => {
     if (file.type === 'image/png' || file.type === 'image/jpeg' || file.type === 'image/jpg') {
       return <i className="bx bxs-file-image" style={{ fontSize: '50px', color: '#FF6F61' }}></i>;
@@ -102,7 +109,19 @@ const Chat = () => {
       return <i className="bx bxs-file" style={{ fontSize: '50px', color: '#FFD700' }}></i>;
     } else {
       return <i className="bx bxs-file-blank" style={{ fontSize: '50px', color: '#A9A9A9' }}></i>;
-    }    
+    }
+  };
+
+  const checkFileTypeForDisplay = (file) => {
+    switch (file.file_type) {
+      case 1: // Image
+        return <img src={file.file} alt="Media" style={{ maxWidth: '100%', borderRadius: '8px' }} />;
+      case 2: // Video
+        return <video src={file.file} controls style={{ maxWidth: '100%', borderRadius: '8px' }} />;
+      // Add more cases as needed
+      default:
+        return <div>Unsupported file type</div>;
+    }
   };
 
   if (loading) {
@@ -177,11 +196,27 @@ const Chat = () => {
                             ? senderName?.firstName + ' ' + senderName?.lastName
                             : receiverName?.firstName + ' ' + receiverName?.lastName}
                         </p>
-                        <div
-                          className={chat.sender_id === parseInt(senderId) ? 'message__sender' : 'message__recipient'}
-                        >
-                          <p>{chat.message}</p>
-                        </div>
+
+                        {chat.chat_files.length > 0 ? (
+                          chat.chat_files.map((file) => (
+                            <div
+                              className={
+                                chat.sender_id === parseInt(senderId) ? 'message__sender' : 'message__recipient'
+                              }
+                            >
+                              <div key={file.id} className="media__file">
+                                {checkFileTypeForDisplay(file)}
+                              </div>
+                              {chat.message && <p className="message__text">{chat.message}</p>}
+                            </div>
+                          ))
+                        ) : (
+                          <div
+                            className={chat.sender_id === parseInt(senderId) ? 'message__sender' : 'message__recipient'}
+                          >
+                            <p>{chat.message}</p>
+                          </div>
+                        )}
                       </div>
                     ))
                   : null}
@@ -227,8 +262,8 @@ const Chat = () => {
                     multiple
                   />
 
-                  <button className="sendBtn" onClick={sendMessage}>
-                    SEND
+                  <button className="sendBtn" type="button" disabled={isSending} onClick={sendMessage}>
+                    {isSending ? 'Sending...' : 'Send'}
                   </button>
                 </form>
               </div>
